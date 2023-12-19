@@ -2,7 +2,7 @@
 // to create migrations for them and apply to your dev DB.
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -11,18 +11,18 @@ generator client {
   binaryTargets = "native"
 }
 
-
 model User {
   id            Int     @id @default(autoincrement())
   email         String  @unique
   password      String
   name          String
   avatar        String
-  role          String
+  role          UserType
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
 
   invites       Invite[]
+  events        Event[]
 
   @@map("users")
 }
@@ -30,11 +30,37 @@ model User {
 model Invite {
   id            Int       @id @default(autoincrement())
   eventId       Int       @map("event_id")
+  event         Event     @relation(fields: [eventId], references: [id])
   userId        Int       @map("user_id")
   user          User      @relation(fields: [userId], references: [id])
-  status        String
+  status        InviteStatus
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
 
   @@map("invites")
+}
+
+model Event {
+  id            Int       @id @default(autoincrement())
+  name          String
+  date          DateTime
+  invites       Invite[]
+  userId        Int
+  owner         User    @relation(fields: [userId], references: [id])
+  sendReminder  Boolean @map("send_reminder")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@map("events")
+}
+
+enum UserType {
+    ADMIN
+    USER
+}
+
+enum InviteStatus {
+  INVITED
+  DECLINED
+  ACCEPTED
 }
