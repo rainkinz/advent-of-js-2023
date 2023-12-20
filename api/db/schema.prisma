@@ -44,14 +44,66 @@ model Event {
   id            Int       @id @default(autoincrement())
   name          String
   date          DateTime
+  userId        Int       @map("user_id")
+  owner         User      @relation(fields: [userId], references: [id])
+  sendReminder  Boolean   @map("send_reminder")
   invites       Invite[]
-  userId        Int
-  owner         User    @relation(fields: [userId], references: [id])
-  sendReminder  Boolean @map("send_reminder")
+  wishLists     WishList[]
+  pairings      Pairing[]
+  thankyous     ThankYou[]
+
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
 
   @@map("events")
+}
+
+model WishList {
+  id            Int       @id @default(autoincrement())
+  name          String
+  url           String
+  userId        Int       @map("user_id")
+  order         Int
+  event         Event     @relation(fields: [eventId], references: [id])
+  eventId       Int       @map("event_id")
+  siteImage     String    @map("site_image")
+  siteTitle     String    @map("site_title")
+  siteDescription     String    @map("site_description")
+
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@map("wishlists")
+}
+
+model Pairing {
+  id            Int       @id @default(autoincrement())
+  url           String
+  personId      Int       @map("person_id")
+  santaId       Int       @map("santa_id")
+  order         Int
+  event         Event     @relation(fields: [eventId], references: [id])
+  eventId       Int       @map("event_id")
+  siteImage     String    @map("site_image")
+
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@map("pairings")
+}
+
+model ThankYou {
+  id            Int       @id @default(autoincrement())
+  message       String
+  fromUserId    Int       @map("from_user_id")
+  toUserId      Int       @map("to_user_id")
+  event         Event     @relation(fields: [eventId], references: [id])
+  eventId       Int       @map("event_id")
+
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@map("thank_yous")
 }
 
 enum UserType {
