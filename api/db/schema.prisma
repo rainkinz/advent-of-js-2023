@@ -25,6 +25,8 @@ model User {
   events        Event[]
   santa         Pairing[] @relation(name: "pairings_santa")
   person        Pairing[] @relation(name: "pairings_person")
+  thankYousFrom ThankYou[] @relation(name: "thankyous_from_user")
+  thankYousTo   ThankYou[] @relation(name: "thankyous_to_user")
 
   @@map("users")
 }
@@ -100,7 +102,9 @@ model ThankYou {
   id            Int       @id @default(autoincrement())
   message       String
   fromUserId    Int       @map("from_user_id")
+  fromUser      User      @relation(fields: [fromUserId], references: [id], name: "thankyous_from_user")
   toUserId      Int       @map("to_user_id")
+  toUser        User      @relation(fields: [toUserId], references: [id], name: "thankyous_to_user")
   event         Event     @relation(fields: [eventId], references: [id])
   eventId       Int       @map("event_id")
 
