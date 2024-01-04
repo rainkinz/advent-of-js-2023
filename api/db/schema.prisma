@@ -23,6 +23,8 @@ model User {
 
   invites       Invite[]
   events        Event[]
+  santa         Pairing[] @relation(name: "pairings_santa")
+  person        Pairing[] @relation(name: "pairings_person")
 
   @@map("users")
 }
@@ -80,7 +82,9 @@ model Pairing {
   id            Int       @id @default(autoincrement())
   url           String
   personId      Int       @map("person_id")
+  person        User      @relation(fields: [personId], references: [id], name: "pairings_person")
   santaId       Int       @map("santa_id")
+  santa         User      @relation(fields: [santaId], references: [id], name: "pairings_santa")
   order         Int
   event         Event     @relation(fields: [eventId], references: [id])
   eventId       Int       @map("event_id")
