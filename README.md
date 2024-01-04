@@ -4,7 +4,9 @@
 
 # README
 
-Welcome to [RedwoodJS](https://redwoodjs.com)!
+## Resources
+
+* [Figma Design](https://www.figma.com/file/JRzFwBJZ0ea6hIcdoit7aS/Secret-Santa-App?type=design&node-id=0-1&mode=design&t=hRVfEeBroSDsHiNj-0)
 
 > **Prerequisites**
 >
