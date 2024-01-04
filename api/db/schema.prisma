@@ -19,9 +19,10 @@ model User {
   resetToken          String?
   resetTokenExpiresAt DateTime?
 
-  name          String
-  avatar        String
-  role          UserType
+  name          String?
+  avatar        String?
+
+  role          UserType  @default(USER)
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
 
