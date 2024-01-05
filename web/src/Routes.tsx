@@ -11,11 +11,12 @@ import { Router, Route, PrivateSet, Set } from '@redwoodjs/router'
 
 import { useAuth } from './auth'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
+import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
 
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <PrivateSet unauthenticated="login">
+      <PrivateSet unauthenticated="login" wrap={InteriorLayout}>
         <Route path="/dashboard" page={DashboardPage} name="dashboard" />
       </PrivateSet>
       <Set wrap={AuthLayout}>

@@ -2,10 +2,16 @@ import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { Link } from '@redwoodjs/router'
+
+import { useAuth } from 'src/auth'
+
 import Avatar from '../Avatar/Avatar'
 import Icon from '../Icon/Icon'
 
 const MyAccount = () => {
+  const { logOut } = useAuth()
+
   const [isDropdownShowing, setIsDropdownShowing] = useState(false)
 
   const toggleDropdown = () => {
@@ -52,10 +58,12 @@ const MyAccount = () => {
                 My Event
               </li>
               <li>
-                <div className="text-pastelMagenta">
-                  <Icon size={32} id="logout" />
-                </div>
-                Logout
+                <button onClick={logOut}>
+                  <div className="text-pastelMagenta">
+                    <Icon size={32} id="logout" />
+                  </div>
+                  Logout
+                </button>
               </li>
             </ul>
           </motion.nav>
