@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 import {
   Form,
   Label,
-  TextField,
   PasswordField,
   Submit,
   FieldError,
+  EmailField,
 } from '@redwoodjs/forms'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
@@ -50,14 +50,13 @@ const LoginPage = () => {
 
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <div className="mx-auto max-w-[660px]">
-        <Form onSubmit={onSubmit} className="rw-form-wrapper">
+        <Form onSubmit={onSubmit} className="mb-10">
           <div className="field">
             <Label name="email" errorClassName="error">
               Email
             </Label>
-            <TextField
+            <EmailField
               name="email"
-              className="rw-input"
               errorClassName="error"
               ref={emailRef}
               validation={{
@@ -66,6 +65,7 @@ const LoginPage = () => {
                   message: 'Email is required',
                 },
               }}
+              placeholder=""
             />
 
             <FieldError name="email" className="error-message" />
@@ -77,7 +77,6 @@ const LoginPage = () => {
             </Label>
             <PasswordField
               name="password"
-              className="rw-input"
               errorClassName="error"
               autoComplete="current-password"
               validation={{
@@ -86,6 +85,7 @@ const LoginPage = () => {
                   message: 'Password is required',
                 },
               }}
+              placeholder=""
             />
 
             <FieldError name="password" className="error-message" />
@@ -93,12 +93,15 @@ const LoginPage = () => {
 
           <Submit>Login</Submit>
         </Form>
-        <div>
-          <Link to={routes.forgotPassword()} className="rw-forgot-link">
+        <div className="text-center text-white">
+          <Link
+            to={routes.forgotPassword()}
+            className="underline hover:no-underline"
+          >
             Forgot Password?
           </Link>
           •
-          <Link to={routes.signup()} className="rw-link">
+          <Link to={routes.signup()} className="underline hover:no-underline">
             Need an account?
           </Link>
         </div>
