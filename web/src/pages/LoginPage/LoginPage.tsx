@@ -1,19 +1,14 @@
 import { useRef } from 'react'
 import { useEffect } from 'react'
 
-import {
-  Form,
-  Label,
-  PasswordField,
-  Submit,
-  FieldError,
-  EmailField,
-} from '@redwoodjs/forms'
+import { Form, Label, Submit, FieldError, EmailField } from '@redwoodjs/forms'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import HeaderWithRulers from 'src/components/HeaderWithRulers/HeaderWithRulers'
+import ShowHidePassword from 'src/components/ShowHidePassword/ShowHidePassword'
 
 const LoginPage = () => {
   const { isAuthenticated, logIn } = useAuth()
@@ -50,6 +45,7 @@ const LoginPage = () => {
 
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <div className="mx-auto max-w-[660px]">
+        <HeaderWithRulers className="mb-8 text-white" heading="LOGIN" />
         <Form onSubmit={onSubmit} className="mb-10">
           <div className="field">
             <Label name="email" errorClassName="error">
@@ -72,11 +68,9 @@ const LoginPage = () => {
           </div>
 
           <div className="field">
-            <Label name="password" errorClassName="error">
-              Password
-            </Label>
-            <PasswordField
+            <ShowHidePassword
               name="password"
+              label="Password"
               errorClassName="error"
               autoComplete="current-password"
               validation={{
@@ -85,7 +79,6 @@ const LoginPage = () => {
                   message: 'Password is required',
                 },
               }}
-              placeholder=""
             />
 
             <FieldError name="password" className="error-message" />
