@@ -48,70 +48,61 @@ const LoginPage = () => {
     <>
       <MetaTags title="Login" />
 
-      <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+      <div className="mx-auto max-w-[660px]">
         <Form onSubmit={onSubmit} className="rw-form-wrapper">
-          <Label
-            name="email"
-            className="rw-label"
-            errorClassName="rw-label rw-label-error"
-          >
-            Email
-          </Label>
-          <TextField
-            name="email"
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            ref={emailRef}
-            validation={{
-              required: {
-                value: true,
-                message: 'Email is required',
-              },
-            }}
-          />
+          <div className="field">
+            <Label name="email" errorClassName="error">
+              Email
+            </Label>
+            <TextField
+              name="email"
+              className="rw-input"
+              errorClassName="error"
+              ref={emailRef}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Email is required',
+                },
+              }}
+            />
 
-          <FieldError name="email" className="rw-field-error" />
-
-          <Label
-            name="password"
-            className="rw-label"
-            errorClassName="rw-label rw-label-error"
-          >
-            Password
-          </Label>
-          <PasswordField
-            name="password"
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            autoComplete="current-password"
-            validation={{
-              required: {
-                value: true,
-                message: 'Password is required',
-              },
-            }}
-          />
-
-          <div className="rw-forgot-link">
-            <Link to={routes.forgotPassword()} className="rw-forgot-link">
-              Forgot Password?
-            </Link>
+            <FieldError name="email" className="error-message" />
           </div>
 
-          <FieldError name="password" className="rw-field-error" />
+          <div className="field">
+            <Label name="password" errorClassName="error">
+              Password
+            </Label>
+            <PasswordField
+              name="password"
+              className="rw-input"
+              errorClassName="error"
+              autoComplete="current-password"
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Password is required',
+                },
+              }}
+            />
 
-          <div className="rw-button-group">
-            <Submit className="rw-button rw-button-blue">Login</Submit>
+            <FieldError name="password" className="error-message" />
           </div>
+
+          <Submit>Login</Submit>
         </Form>
-        <div className="rw-login-link">
-          <span>Don&apos;t have an account?</span>{' '}
+        <div>
+          <Link to={routes.forgotPassword()} className="rw-forgot-link">
+            Forgot Password?
+          </Link>
+          •
           <Link to={routes.signup()} className="rw-link">
-            Sign up!
+            Need an account?
           </Link>
         </div>
-      </main>
+      </div>
     </>
   )
 }
