@@ -1,4 +1,5 @@
 import { Form, TextField, Label, DateField } from '@redwoodjs/forms'
+import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
@@ -31,6 +32,10 @@ const NewEventPage = () => {
     onError: (error) => {
       console.log(error)
       toast.error(error.message)
+    },
+    onSuccess: () => {
+      toast.success('Event was successfully created')
+      navigate(routes.eventInvites())
     },
   })
 
