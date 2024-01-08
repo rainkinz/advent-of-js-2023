@@ -62,6 +62,7 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
       <Form onSubmit={onSubmit} className="mb-10">
         <div className="field">
           <ShowHidePassword
+            disabled={!enabled}
             name="password"
             label="Password"
             errorClassName="error"
@@ -77,9 +78,7 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
           <FieldError name="password" className="error-message" />
         </div>
 
-        <Submit className="rw-button rw-button-blue" disabled={!enabled}>
-          Submit
-        </Submit>
+        <Submit disabled={!enabled}>Submit</Submit>
       </Form>
     </>
   )
