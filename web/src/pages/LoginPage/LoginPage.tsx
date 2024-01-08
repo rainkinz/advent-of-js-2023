@@ -44,6 +44,7 @@ const LoginPage = () => {
       <MetaTags title="Login" />
 
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+
       <div className="mx-auto max-w-[660px]">
         <HeaderWithRulers className="mb-8 text-white" heading="LOGIN" />
         <Form onSubmit={onSubmit} className="mb-10">
