@@ -64,6 +64,7 @@ const SignupPage = () => {
                 message: 'Email is required',
               },
             }}
+            placeholder=""
           />
           <FieldError name="email" className="error-message" />
         </div>
@@ -87,7 +88,7 @@ const SignupPage = () => {
         <Submit>Sign Up</Submit>
       </Form>
 
-      <div className="text-center text-white">
+      <div className="auth-links">
         <span>Already have an account?</span>{' '}
         <Link to={routes.login()} className="underline hover:no-underline">
           Log in!

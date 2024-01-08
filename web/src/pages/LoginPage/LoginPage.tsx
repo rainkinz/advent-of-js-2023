@@ -86,15 +86,18 @@ const LoginPage = () => {
 
         <Submit>Login</Submit>
       </Form>
-      <div className="text-center text-white">
+      <div className="auth-links">
         <Link
           to={routes.forgotPassword()}
-          className="underline hover:no-underline"
+          className="px-2 underline hover:no-underline"
         >
           Forgot Password?
         </Link>
         •
-        <Link to={routes.signup()} className="underline hover:no-underline">
+        <Link
+          to={routes.signup()}
+          className="px-2 underline hover:no-underline"
+        >
           Need an account?
         </Link>
       </div>
