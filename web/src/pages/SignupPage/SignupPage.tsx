@@ -1,15 +1,7 @@
 import { useRef } from 'react'
 import { useEffect } from 'react'
 
-import {
-  Form,
-  Label,
-  TextField,
-  PasswordField,
-  FieldError,
-  Submit,
-  EmailField,
-} from '@redwoodjs/forms'
+import { Form, Label, FieldError, Submit, EmailField } from '@redwoodjs/forms'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
@@ -55,53 +47,51 @@ const SignupPage = () => {
 
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
 
-      <div className="mx-auto max-w-[660px]">
-        <HeaderWithRulers className="mb-8 text-white" heading="SIGN UP" />
+      <HeaderWithRulers className="mb-8 text-white" heading="SIGN UP" />
 
-        <Form onSubmit={onSubmit} className="mb-10">
-          <div className="field">
-            <Label name="email" errorClassName="error">
-              Email
-            </Label>
-            <EmailField
-              name="email"
-              errorClassName="error"
-              ref={emailRef}
-              validation={{
-                required: {
-                  value: true,
-                  message: 'Email is required',
-                },
-              }}
-            />
-            <FieldError name="email" className="error-message" />
-          </div>
-
-          <div className="field">
-            <ShowHidePassword
-              name="password"
-              label="Password"
-              errorClassName="error"
-              autoComplete="current-password"
-              validation={{
-                required: {
-                  value: true,
-                  message: 'Password is required',
-                },
-              }}
-            />
-
-            <FieldError name="password" className="error-message" />
-          </div>
-          <Submit>Sign Up</Submit>
-        </Form>
-
-        <div className="text-center text-white">
-          <span>Already have an account?</span>{' '}
-          <Link to={routes.login()} className="underline hover:no-underline">
-            Log in!
-          </Link>
+      <Form onSubmit={onSubmit} className="mb-10">
+        <div className="field">
+          <Label name="email" errorClassName="error">
+            Email
+          </Label>
+          <EmailField
+            name="email"
+            errorClassName="error"
+            ref={emailRef}
+            validation={{
+              required: {
+                value: true,
+                message: 'Email is required',
+              },
+            }}
+          />
+          <FieldError name="email" className="error-message" />
         </div>
+
+        <div className="field">
+          <ShowHidePassword
+            name="password"
+            label="Password"
+            errorClassName="error"
+            autoComplete="current-password"
+            validation={{
+              required: {
+                value: true,
+                message: 'Password is required',
+              },
+            }}
+          />
+
+          <FieldError name="password" className="error-message" />
+        </div>
+        <Submit>Sign Up</Submit>
+      </Form>
+
+      <div className="text-center text-white">
+        <span>Already have an account?</span>{' '}
+        <Link to={routes.login()} className="underline hover:no-underline">
+          Log in!
+        </Link>
       </div>
     </>
   )

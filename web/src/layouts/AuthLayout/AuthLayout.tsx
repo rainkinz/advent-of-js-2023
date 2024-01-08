@@ -13,7 +13,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           alt="Secret Santa"
           className="mx-auto mb-8 w-[460px] pt-24"
         />
-        {children}
+        <div className="mx-auto max-w-[660px]">{children}</div>
       </main>
       <Footer />
     </>

@@ -45,60 +45,58 @@ const LoginPage = () => {
 
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
 
-      <div className="mx-auto max-w-[660px]">
-        <HeaderWithRulers className="mb-8 text-white" heading="LOGIN" />
-        <Form onSubmit={onSubmit} className="mb-10">
-          <div className="field">
-            <Label name="email" errorClassName="error">
-              Email
-            </Label>
-            <EmailField
-              name="email"
-              errorClassName="error"
-              ref={emailRef}
-              validation={{
-                required: {
-                  value: true,
-                  message: 'Email is required',
-                },
-              }}
-              placeholder=""
-            />
+      <HeaderWithRulers className="mb-8 text-white" heading="LOGIN" />
+      <Form onSubmit={onSubmit} className="mb-10">
+        <div className="field">
+          <Label name="email" errorClassName="error">
+            Email
+          </Label>
+          <EmailField
+            name="email"
+            errorClassName="error"
+            ref={emailRef}
+            validation={{
+              required: {
+                value: true,
+                message: 'Email is required',
+              },
+            }}
+            placeholder=""
+          />
 
-            <FieldError name="email" className="error-message" />
-          </div>
-
-          <div className="field">
-            <ShowHidePassword
-              name="password"
-              label="Password"
-              errorClassName="error"
-              autoComplete="current-password"
-              validation={{
-                required: {
-                  value: true,
-                  message: 'Password is required',
-                },
-              }}
-            />
-
-            <FieldError name="password" className="error-message" />
-          </div>
-
-          <Submit>Login</Submit>
-        </Form>
-        <div className="text-center text-white">
-          <Link
-            to={routes.forgotPassword()}
-            className="underline hover:no-underline"
-          >
-            Forgot Password?
-          </Link>
-          •
-          <Link to={routes.signup()} className="underline hover:no-underline">
-            Need an account?
-          </Link>
+          <FieldError name="email" className="error-message" />
         </div>
+
+        <div className="field">
+          <ShowHidePassword
+            name="password"
+            label="Password"
+            errorClassName="error"
+            autoComplete="current-password"
+            validation={{
+              required: {
+                value: true,
+                message: 'Password is required',
+              },
+            }}
+          />
+
+          <FieldError name="password" className="error-message" />
+        </div>
+
+        <Submit>Login</Submit>
+      </Form>
+      <div className="text-center text-white">
+        <Link
+          to={routes.forgotPassword()}
+          className="underline hover:no-underline"
+        >
+          Forgot Password?
+        </Link>
+        •
+        <Link to={routes.signup()} className="underline hover:no-underline">
+          Need an account?
+        </Link>
       </div>
     </>
   )
