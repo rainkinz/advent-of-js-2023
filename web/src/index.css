@@ -34,6 +34,7 @@
   }
 
   textarea,
+  input[type="date"],
   input[type="password"],
   input[type="url"],
   input[type="number"],
