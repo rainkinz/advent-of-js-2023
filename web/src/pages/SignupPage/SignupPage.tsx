@@ -90,9 +90,7 @@ const SignupPage = () => {
 
       <div className="auth-links">
         <span>Already have an account?</span>{' '}
-        <Link to={routes.login()} className="underline hover:no-underline">
-          Log in!
-        </Link>
+        <Link to={routes.login()}>Log in!</Link>
       </div>
     </>
   )

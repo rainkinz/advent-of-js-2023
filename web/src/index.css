@@ -123,6 +123,10 @@
     @apply text-center text-white;
   }
 
+  .auth-links a {
+    @apply underline hover:no-underline;
+  }
+
   .error-message {
     @apply text-orangeRed block py-2
   }

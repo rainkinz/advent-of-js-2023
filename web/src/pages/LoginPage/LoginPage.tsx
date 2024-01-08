@@ -94,10 +94,7 @@ const LoginPage = () => {
           Forgot Password?
         </Link>
         •
-        <Link
-          to={routes.signup()}
-          className="px-2 underline hover:no-underline"
-        >
+        <Link to={routes.signup()} className="px-2 ">
           Need an account?
         </Link>
       </div>
