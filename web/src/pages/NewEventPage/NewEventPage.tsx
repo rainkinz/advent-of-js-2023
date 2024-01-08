@@ -1,5 +1,6 @@
 import { Form, TextField, Label, DateField } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
 
 import Checkbox from 'src/components/Checkbox/Checkbox'
 import HeaderWithRulers from 'src/components/HeaderWithRulers/HeaderWithRulers'
@@ -26,10 +27,14 @@ const CREATE_EVENT_MUTATION = gql`
 `
 
 const NewEventPage = () => {
-  const [createEvent, createEventStatus] = useMutation(CREATE_EVENT_MUTATION)
+  const [createEvent, { loading }] = useMutation(CREATE_EVENT_MUTATION, {
+    onError: (error) => {
+      console.log(error)
+      toast.error(error.message)
+    },
+  })
 
   const handleSubmit = (data) => {
-    console.log({ data })
     createEvent({
       variables: {
         name: data.eventName,
@@ -46,22 +51,24 @@ const NewEventPage = () => {
       <HeaderWithRulers className="text-white" heading="Set up your event" />
       <div className="auth-form">
         <Form onSubmit={handleSubmit}>
-          <div className="field">
-            <Label name="eventName">Event Name</Label>
-            <TextField name="eventName" placeholder="" />
-          </div>
-          <div className="field">
-            <Label name="groupName">Event Date</Label>
-            <DateField name="eventDate" placeholder="" />
-          </div>
-          <div className="field">
-            <Checkbox
-              name="eventReminder"
-              label="Send out a reminder for an event"
-            />
-          </div>
+          <fieldset disabled={loading}>
+            <div className="field">
+              <Label name="eventName">Event Name</Label>
+              <TextField name="eventName" placeholder="" />
+            </div>
+            <div className="field">
+              <Label name="groupName">Event Date</Label>
+              <DateField name="eventDate" placeholder="" />
+            </div>
+            <div className="field">
+              <Checkbox
+                name="eventReminder"
+                label="Send out a reminder for an event"
+              />
+            </div>
 
-          <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
+          </fieldset>
         </Form>
       </div>
     </>
