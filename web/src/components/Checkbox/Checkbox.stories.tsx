@@ -27,7 +27,7 @@ type Story = StoryObj<typeof Checkbox>
 export const Primary: Story = {
   render: () => (
     <Form>
-      <Checkbox name="test" />
+      <Checkbox name="test" label="Label for the checkbox" />
     </Form>
   ),
 }
