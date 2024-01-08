@@ -2,14 +2,19 @@ import { Form, TextField, Label, DateField } from '@redwoodjs/forms'
 import { MetaTags } from '@redwoodjs/web'
 
 import Checkbox from 'src/components/Checkbox/Checkbox'
+import HeaderWithRulers from 'src/components/HeaderWithRulers/HeaderWithRulers'
 
 const NewEventPage = () => {
+  const handleSubmit = (data) => {
+    console.log({ data })
+  }
   return (
     <>
-      <MetaTags title="NewEvent" description="NewEvent page" />
+      <MetaTags title="Setup your event" />
 
+      <HeaderWithRulers className="text-white" heading="Setup your event" />
       <div className="auth-form">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="field">
             <Label name="eventName">Event Name</Label>
             <TextField name="eventName" placeholder="" />
@@ -24,6 +29,8 @@ const NewEventPage = () => {
               label="Send out a reminder for an event"
             />
           </div>
+
+          <button type="submit">Submit</button>
         </Form>
       </div>
     </>
