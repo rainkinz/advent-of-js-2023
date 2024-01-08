@@ -33,7 +33,7 @@ const NewEventPage = () => {
       console.log(error)
       toast.error(error.message)
     },
-    onSuccess: () => {
+    onCompleted: () => {
       toast.success('Event was successfully created')
       navigate(routes.eventInvites())
     },

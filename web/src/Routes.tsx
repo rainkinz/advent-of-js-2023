@@ -16,10 +16,9 @@ import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <Route path="/event-invites" page={EventInvitesPage} name="eventInvites" />
-      <Route path="/event-invite" page={EventInvitePage} name="eventInvite" />
       <PrivateSet unauthenticated="login" wrap={InteriorLayout}>
         <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+        <Route path="/event-invites" page={EventInvitesPage} name="eventInvites" />
       </PrivateSet>
       <PrivateSet unauthenticated="login" wrap={AuthLayout}>
         <Route path="/event/new" page={NewEventPage} name="newEvent" />
