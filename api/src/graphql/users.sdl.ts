@@ -2,15 +2,11 @@ export const schema = gql`
   type User {
     id: Int!
     email: String!
-    hashedPassword: String!
-    salt: String!
-    resetToken: String
-    resetTokenExpiresAt: DateTime
     name: String
     avatar: String
     role: UserType!
-    createdAt: DateTime!
-    updatedAt: DateTime!
+    # createdAt: DateTime!
+    # updatedAt: DateTime!
     invites: [Invite]!
     events: [Event]!
     santa: [Pairing]!
@@ -25,16 +21,12 @@ export const schema = gql`
   }
 
   type Query {
-    users: [User!]! @requireAuth
-    user(id: Int!): User @requireAuth
+    users: [User!]! @skipAuth # TODO turn back on @requireAuth
+    user(id: Int!): User @skipAuth # TODO: turn back on @requireAuth
   }
 
   input CreateUserInput {
     email: String!
-    hashedPassword: String!
-    salt: String!
-    resetToken: String
-    resetTokenExpiresAt: DateTime
     name: String
     avatar: String
     role: UserType!
@@ -42,10 +34,6 @@ export const schema = gql`
 
   input UpdateUserInput {
     email: String
-    hashedPassword: String
-    salt: String
-    resetToken: String
-    resetTokenExpiresAt: DateTime
     name: String
     avatar: String
     role: UserType

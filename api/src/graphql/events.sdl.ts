@@ -15,8 +15,8 @@ export const schema = gql`
   }
 
   type Query {
-    events: [Event!]! @requireAuth
-    event(id: Int!): Event @requireAuth
+    events: [Event!]! @skipAuth
+    event(id: Int!): Event @skipAuth
   }
 
   input CreateEventInput {
@@ -34,8 +34,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createEvent(input: CreateEventInput!): Event! @requireAuth
-    updateEvent(id: Int!, input: UpdateEventInput!): Event! @requireAuth
-    deleteEvent(id: Int!): Event! @requireAuth
+    createEvent(input: CreateEventInput!): Event! @skipAuth
+    updateEvent(id: Int!, input: UpdateEventInput!): Event! @skipAuth
+    deleteEvent(id: Int!): Event! @skipAuth
   }
 `
