@@ -1,13 +1,15 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import Button from 'src/components/Button/Button'
+import EventHeaderCell from 'src/components/EventHeaderCell'
 import Icon from 'src/components/Icon/Icon'
 
 const EventInvitesPage = () => {
   return (
     <>
       <MetaTags title="Invite friends and family" />
+
+      <EventHeaderCell id="1" />
 
       <h3 className="font-handwriting text-4xl uppercase text-white">
         3 Days Until
