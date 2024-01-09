@@ -34,11 +34,11 @@ export const Success = ({
   return (
     <>
       <h3 className="font-handwriting text-4xl uppercase text-white">
-        3 Days Until
+        {event.date}
       </h3>
       <div className="flex items-center gap-3">
         <h1 className="m-0 flex-1 p-0 font-condensed text-[166px] uppercase leading-[0.8] text-white">
-          Smith Christmas
+          {event.name}
         </h1>
         <button className="text-white dark:text-white">
           <Icon id="edit" />
