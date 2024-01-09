@@ -22,6 +22,7 @@ const Routes = () => {
       </PrivateSet>
       <PrivateSet unauthenticated="login" wrap={AuthLayout}>
         <Route path="/event/new" page={NewEventPage} name="newEvent" />
+        <Route path="/event/{id}" page={EventInvitesPage} name="eventInvites" />
       </PrivateSet>
       <Set wrap={AuthLayout}>
         <Route path="/login" page={LoginPage} name="login" />
