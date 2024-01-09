@@ -1,20 +1,23 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import Button from 'src/components/Button/Button'
+import Icon from 'src/components/Icon/Icon'
+
 const EventInvitesPage = () => {
   return (
     <>
-      <MetaTags title="EventInvites" description="EventInvites page" />
+      <MetaTags title="Invite friends and family" />
 
-      <h1>EventInvitesPage</h1>
-      <p>
-        Find me in{' '}
-        <code>./web/src/pages/EventInvitesPage/EventInvitesPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>eventInvites</code>, link to me with `
-        <Link to={routes.eventInvites()}>EventInvites</Link>`
-      </p>
+      <h3>3 Days Until</h3>
+      <h1>Smith Christmas</h1>
+
+      <button>
+        <Icon id="edit" />
+      </button>
+      <Button size="small" className="bg-supernova text-black">
+        Match
+      </Button>
     </>
   )
 }

@@ -16,13 +16,14 @@ import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <PrivateSet unauthenticated="login" wrap={InteriorLayout}>
-        <Route path="/dashboard" page={DashboardPage} name="dashboard" />
-        <Route path="/event-invites" page={EventInvitesPage} name="eventInvites" />
-      </PrivateSet>
-      <PrivateSet unauthenticated="login" wrap={AuthLayout}>
-        <Route path="/event/new" page={NewEventPage} name="newEvent" />
-        <Route path="/event/{id}" page={EventInvitesPage} name="eventInvites" />
+      <PrivateSet unauthenticated="login">
+        <Set wrap={InteriorLayout}>
+          <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+          <Route path="/event/{id}" page={EventInvitesPage} name="eventInvites" />
+        </Set>
+        <Set wrap={AuthLayout}>
+          <Route path="/event/new" page={NewEventPage} name="newEvent" />
+        </Set>
       </PrivateSet>
       <Set wrap={AuthLayout}>
         <Route path="/login" page={LoginPage} name="login" />
