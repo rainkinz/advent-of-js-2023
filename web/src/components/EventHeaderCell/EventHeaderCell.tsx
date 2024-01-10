@@ -11,7 +11,7 @@ import { prettifyDate } from 'src/helpers/dateHelpers'
 
 export const QUERY = gql`
   query FindEventHeaderQuery {
-    event(id: 1) {
+    event(id: "1") {
       id
       name
       date

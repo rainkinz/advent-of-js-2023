@@ -23,7 +23,7 @@ export const schema = gql`
 
   input CreateInviteInput {
     eventId: String!
-    userId: String!
+    userId: String
     status: InviteStatus!
     email: String!
     name: String!

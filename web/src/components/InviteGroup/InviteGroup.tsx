@@ -1,33 +1,43 @@
+import { EmailField, Form, Label, TextField } from '@redwoodjs/forms'
+
 import Card from '../Card/Card'
 import RoundButton from '../RoundButton/RoundButton'
 
+const CREATE_INVITE_MUTATION = gql`
+  mutation createInviteMutation {
+    createInvite(
+      input: {
+        eventId: "1"
+        userId: "1"
+        status: INVITED
+        email: "brendan@example.com"
+        name: "brendan"
+      }
+    ) {
+      id
+    }
+  }
+`
+
 const InviteGroup = () => {
+  const handleSubmit = (data) => {
+    console.log(data)
+  }
   return (
     <div>
-      {/* form */}
       <div className="label ml-5">Invite a friend or family member</div>
       <div className="mb-10 ml-5 flex items-center gap-5 bg-spanishGreen p-4">
-        <div className="field flex-1">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className="input"
-            placeholder=""
-          />
-        </div>
-        <div className="field flex-1">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            className="input"
-            placeholder=""
-          />
-        </div>
-        <RoundButton status="warning" />
+        <Form onSubmit={handleSubmit}>
+          <div className="field flex-1">
+            <Label name="name">Name</Label>
+            <TextField name="name" className="input" placeholder="" />
+          </div>
+          <div className="field flex-1">
+            <Label name="email">Email</Label>
+            <EmailField name="email" className="input" placeholder="" />
+          </div>
+          <RoundButton status="warning" type="submit" />
+        </Form>
       </div>
 
       <div className="grid grid-cols-2 gap-x-12 gap-y-8">
