@@ -10,8 +10,8 @@ import Icon from 'src/components/Icon/Icon'
 import { prettifyDate } from 'src/helpers/dateHelpers'
 
 export const QUERY = gql`
-  query FindEventHeaderQuery {
-    event(id: "1") {
+  query FindEventHeaderQuery($eventId: String!) {
+    event(id: $eventId) {
       id
       name
       date

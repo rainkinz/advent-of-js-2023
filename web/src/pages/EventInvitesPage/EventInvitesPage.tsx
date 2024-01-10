@@ -3,14 +3,14 @@ import { MetaTags } from '@redwoodjs/web'
 import EventHeaderCell from 'src/components/EventHeaderCell'
 import InviteGroup from 'src/components/InviteGroup/InviteGroup'
 
-const EventInvitesPage = () => {
+const EventInvitesPage = ({ id }) => {
   return (
     <>
       <MetaTags title="Invite friends and family" />
 
-      <EventHeaderCell id="1" />
+      <EventHeaderCell eventId={id} />
 
-      <InviteGroup />
+      <InviteGroup eventId={id} />
     </>
   )
 }

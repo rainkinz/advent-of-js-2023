@@ -19,7 +19,7 @@ const CREATE_INVITE_MUTATION = gql`
   }
 `
 
-const InviteGroup = () => {
+const InviteGroup = ({ eventId }) => {
   const [createInvite, { loading }] = useMutation(CREATE_INVITE_MUTATION, {
     onError: (error) => {
       console.log(error)
@@ -35,7 +35,7 @@ const InviteGroup = () => {
     console.log(data)
     createInvite({
       variables: {
-        eventId: '1',
+        eventId: eventId,
         ...data,
       },
     })
