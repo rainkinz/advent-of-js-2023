@@ -1,3 +1,5 @@
+import { Toaster } from '@redwoodjs/web/dist/toast'
+
 import Footer from 'src/components/Footer/Footer'
 import MyAccount from 'src/components/MyAccount/MyAccount'
 
@@ -8,6 +10,7 @@ type InteriorLayoutProps = {
 const InteriorLayout = ({ children }: InteriorLayoutProps) => {
   return (
     <>
+      <Toaster />
       <main className="bg-interior">
         <aside className="col-span-4 bg-no-repeat pb-10">
           <img src="/images/bg__interior.svg" alt="" />

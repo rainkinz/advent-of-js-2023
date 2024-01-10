@@ -17,7 +17,7 @@ const RoundButton = ({
 
   return (
     <button
-      className={`h-16 w-16 rounded-full status-${status} center border-2 border-white  ${
+      className={`round-button h-16 w-16 rounded-full status-${status} center border-2 border-white  ${
         status === 'error' ? 'rotate-45' : ''
       } ${status === 'warning' ? 'text-black' : 'text-white'}`}
       onClick={onClick}

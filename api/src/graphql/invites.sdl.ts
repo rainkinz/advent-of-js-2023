@@ -3,8 +3,10 @@ export const schema = gql`
     id: String!
     eventId: String!
     event: Event!
-    userId: String!
-    user: User!
+    userId: String
+    user: User
+    email: String!
+    name: String!
     status: InviteStatus!
     createdAt: DateTime!
     updatedAt: DateTime!
@@ -17,7 +19,7 @@ export const schema = gql`
   }
 
   type Query {
-    invites: [Invite!]! @requireAuth
+    invites: [Invite!]! @skipAuth #@requireAuth
     invite(id: String!): Invite @requireAuth
   }
 

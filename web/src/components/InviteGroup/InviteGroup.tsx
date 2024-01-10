@@ -1,18 +1,18 @@
 import { EmailField, Form, Label, TextField } from '@redwoodjs/forms'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
 
 import Card from '../Card/Card'
 import RoundButton from '../RoundButton/RoundButton'
 
 const CREATE_INVITE_MUTATION = gql`
-  mutation createInviteMutation {
+  mutation createInviteMutation(
+    $eventId: String!
+    $email: String!
+    $name: String!
+  ) {
     createInvite(
-      input: {
-        eventId: "1"
-        userId: "1"
-        status: INVITED
-        email: "brendan@example.com"
-        name: "brendan"
-      }
+      input: { eventId: $eventId, status: INVITED, email: $email, name: $name }
     ) {
       id
     }
@@ -20,9 +20,27 @@ const CREATE_INVITE_MUTATION = gql`
 `
 
 const InviteGroup = () => {
+  const [createInvite, { loading }] = useMutation(CREATE_INVITE_MUTATION, {
+    onError: (error) => {
+      console.log(error)
+      toast.error(error.message)
+    },
+    onCompleted: () => {
+      toast.success('Invite was sent')
+      // navigate(routes.eventInvites())
+    },
+  })
+
   const handleSubmit = (data) => {
     console.log(data)
+    createInvite({
+      variables: {
+        eventId: '1',
+        ...data,
+      },
+    })
   }
+
   return (
     <div>
       <div className="label ml-5">Invite a friend or family member</div>
