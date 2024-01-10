@@ -1,4 +1,4 @@
-import { EmailField, Form, Label, TextField } from '@redwoodjs/forms'
+import { EmailField, Form, Label, TextField, useForm } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
@@ -20,6 +20,8 @@ const CREATE_INVITE_MUTATION = gql`
 `
 
 const InviteGroup = ({ eventId }) => {
+  const formMethods = useForm()
+
   const [createInvite, { loading }] = useMutation(CREATE_INVITE_MUTATION, {
     onError: (error) => {
       console.log(error)
@@ -27,6 +29,7 @@ const InviteGroup = ({ eventId }) => {
     },
     onCompleted: () => {
       toast.success('Invite was sent')
+      formMethods.reset()
       // navigate(routes.eventInvites())
     },
   })
@@ -45,16 +48,18 @@ const InviteGroup = ({ eventId }) => {
     <div>
       <div className="label ml-5">Invite a friend or family member</div>
       <div className="mb-10 ml-5 flex items-center gap-5 bg-spanishGreen p-4">
-        <Form onSubmit={handleSubmit}>
-          <div className="field flex-1">
-            <Label name="name">Name</Label>
-            <TextField name="name" className="input" placeholder="" />
-          </div>
-          <div className="field flex-1">
-            <Label name="email">Email</Label>
-            <EmailField name="email" className="input" placeholder="" />
-          </div>
-          <RoundButton status="warning" type="submit" />
+        <Form onSubmit={handleSubmit} formMethods={formMethods}>
+          <fieldset disabled={loading}>
+            <div className="field flex-1">
+              <Label name="name">Name</Label>
+              <TextField name="name" className="input" placeholder="" />
+            </div>
+            <div className="field flex-1">
+              <Label name="email">Email</Label>
+              <EmailField name="email" className="input" placeholder="" />
+            </div>
+            <RoundButton status="warning" type="submit" />
+          </fieldset>
         </Form>
       </div>
 
