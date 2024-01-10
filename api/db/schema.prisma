@@ -12,7 +12,7 @@ generator client {
 }
 
 model User {
-  id            Int     @id @default(autoincrement())
+  id            String    @id @default(cuid())
   email         String  @unique
   hashedPassword      String
   salt                String
@@ -37,10 +37,10 @@ model User {
 }
 
 model Invite {
-  id            Int       @id @default(autoincrement())
-  eventId       Int       @map("event_id")
+  id            String    @id @default(cuid())
+  eventId       String    @map("event_id")
   event         Event     @relation(fields: [eventId], references: [id])
-  userId        Int       @map("user_id")
+  userId        String    @map("user_id")
   user          User      @relation(fields: [userId], references: [id])
   status        InviteStatus
   createdAt     DateTime  @default(now()) @map("created_at")
@@ -50,10 +50,10 @@ model Invite {
 }
 
 model Event {
-  id            Int       @id @default(autoincrement())
+  id            String    @id @default(cuid())
   name          String
   date          DateTime
-  userId        Int       @map("user_id")
+  userId        String    @map("user_id")
   owner         User      @relation(fields: [userId], references: [id])
   sendReminder  Boolean   @map("send_reminder")
   invites       Invite[]
@@ -68,13 +68,13 @@ model Event {
 }
 
 model WishList {
-  id            Int       @id @default(autoincrement())
+  id            String    @id @default(cuid())
   name          String
   url           String
   userId        Int       @map("user_id")
   order         Int
   event         Event     @relation(fields: [eventId], references: [id])
-  eventId       Int       @map("event_id")
+  eventId       String    @map("event_id")
   siteImage     String    @map("site_image")
   siteTitle     String    @map("site_title")
   siteDescription     String    @map("site_description")
@@ -86,15 +86,15 @@ model WishList {
 }
 
 model Pairing {
-  id            Int       @id @default(autoincrement())
+  id            String    @id @default(cuid())
   url           String
-  personId      Int       @map("person_id")
+  personId      String    @map("person_id")
   person        User      @relation(fields: [personId], references: [id], name: "pairings_person")
-  santaId       Int       @map("santa_id")
+  santaId       String    @map("santa_id")
   santa         User      @relation(fields: [santaId], references: [id], name: "pairings_santa")
   order         Int
   event         Event     @relation(fields: [eventId], references: [id])
-  eventId       Int       @map("event_id")
+  eventId       String    @map("event_id")
   siteImage     String    @map("site_image")
 
   createdAt     DateTime  @default(now()) @map("created_at")
@@ -104,14 +104,14 @@ model Pairing {
 }
 
 model ThankYou {
-  id            Int       @id @default(autoincrement())
+  id            String    @id @default(cuid())
   message       String
-  fromUserId    Int       @map("from_user_id")
+  fromUserId    String    @map("from_user_id")
   fromUser      User      @relation(fields: [fromUserId], references: [id], name: "thankyous_from_user")
-  toUserId      Int       @map("to_user_id")
+  toUserId      String    @map("to_user_id")
   toUser        User      @relation(fields: [toUserId], references: [id], name: "thankyous_to_user")
+  eventId       String    @map("event_id")
   event         Event     @relation(fields: [eventId], references: [id])
-  eventId       Int       @map("event_id")
 
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")

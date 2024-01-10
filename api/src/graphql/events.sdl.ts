@@ -1,9 +1,9 @@
 export const schema = gql`
   type Event {
-    id: Int!
+    id: String!
     name: String!
     date: DateTime!
-    userId: Int!
+    userId: String!
     owner: User!
     sendReminder: Boolean!
     invites: [Invite]!
@@ -16,26 +16,26 @@ export const schema = gql`
 
   type Query {
     events: [Event!]! @skipAuth
-    event(id: Int!): Event @skipAuth
+    event(id: String!): Event @skipAuth
   }
 
   input CreateEventInput {
     name: String!
     date: DateTime!
-    userId: Int!
+    userId: String!
     sendReminder: Boolean!
   }
 
   input UpdateEventInput {
     name: String
     date: DateTime
-    userId: Int
+    userId: String
     sendReminder: Boolean
   }
 
   type Mutation {
     createEvent(input: CreateEventInput!): Event! @skipAuth
-    updateEvent(id: Int!, input: UpdateEventInput!): Event! @skipAuth
-    deleteEvent(id: Int!): Event! @skipAuth
+    updateEvent(id: String!, input: UpdateEventInput!): Event! @skipAuth
+    deleteEvent(id: String!): Event! @skipAuth
   }
 `
