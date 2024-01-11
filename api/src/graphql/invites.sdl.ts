@@ -40,6 +40,6 @@ export const schema = gql`
   type Mutation {
     createInvite(input: CreateInviteInput!): Invite! @skipAuth # @requireAuth
     updateInvite(id: String!, input: UpdateInviteInput!): Invite! @requireAuth
-    deleteInvite(id: String!): Invite! @requireAuth
+    deleteInvite(id: String!): Invite! @skipAuth # @requireAuth
   }
 `
