@@ -1,4 +1,11 @@
-import { EmailField, Form, Label, TextField, useForm } from '@redwoodjs/forms'
+import {
+  EmailField,
+  FieldError,
+  Form,
+  Label,
+  TextField,
+  useForm,
+} from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
@@ -53,11 +60,33 @@ const InviteGroup = ({ eventId }) => {
           <div className="mb-10 ml-5 flex items-center gap-5 bg-spanishGreen p-4 dark:bg-blackPearl">
             <div className="field mb-0 flex-1">
               <Label name="name">Name</Label>
-              <TextField name="name" className="input" placeholder="" />
+              <TextField
+                name="name"
+                className="input"
+                placeholder=""
+                validation={{
+                  required: {
+                    value: true,
+                    message: 'Name is required',
+                  },
+                }}
+              />
+              <FieldError name="name" className="error-message" />
             </div>
             <div className="field mb-0 flex-1">
               <Label name="email">Email</Label>
-              <EmailField name="email" className="input" placeholder="" />
+              <EmailField
+                name="email"
+                className="input"
+                placeholder=""
+                validation={{
+                  required: {
+                    value: true,
+                    message: 'Email is required',
+                  },
+                }}
+              />
+              <FieldError name="email" className="error-message" />
             </div>
             <RoundButton status="warning" type="submit" />
           </div>
