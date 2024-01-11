@@ -2,6 +2,8 @@ import { EmailField, Form, Label, TextField, useForm } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
+import ListInvitesCell from 'src/components/ListInvitesCell'
+
 import Card from '../Card/Card'
 import RoundButton from '../RoundButton/RoundButton'
 
@@ -63,24 +65,7 @@ const InviteGroup = ({ eventId }) => {
         </Form>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-12 gap-y-8">
-        <Card
-          avatar={{
-            alt: 'Avatar',
-            avatar: 'https://picsum.photos/seed/1701322447715/300/300',
-          }}
-          email="email@email.com"
-          name="Amy Dutton"
-        />
-        <Card
-          avatar={{
-            alt: 'Avatar',
-            avatar: 'https://picsum.photos/seed/1701322447715/300/300',
-          }}
-          email="email@email.com"
-          name="Amy Dutton"
-        />
-      </div>
+      <ListInvitesCell eventId={eventId} />
     </div>
   )
 }
