@@ -4,7 +4,6 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import ListInvitesCell from 'src/components/ListInvitesCell'
 
-import Card from '../Card/Card'
 import RoundButton from '../RoundButton/RoundButton'
 
 const CREATE_INVITE_MUTATION = gql`
@@ -26,18 +25,16 @@ const InviteGroup = ({ eventId }) => {
 
   const [createInvite, { loading }] = useMutation(CREATE_INVITE_MUTATION, {
     onError: (error) => {
-      console.log(error)
       toast.error(error.message)
+      console.error(error)
     },
     onCompleted: () => {
       toast.success('Invite was sent')
       formMethods.reset()
-      // navigate(routes.eventInvites())
     },
   })
 
   const handleSubmit = (data) => {
-    console.log(data)
     createInvite({
       variables: {
         eventId: eventId,
@@ -48,22 +45,24 @@ const InviteGroup = ({ eventId }) => {
 
   return (
     <div>
-      <div className="label ml-5">Invite a friend or family member</div>
-      <div className="mb-10 ml-5 flex items-center gap-5 bg-spanishGreen p-4">
-        <Form onSubmit={handleSubmit} formMethods={formMethods}>
-          <fieldset disabled={loading}>
-            <div className="field flex-1">
+      <div className="label ml-5 text-black dark:text-white">
+        Invite a friend or family member
+      </div>
+      <Form onSubmit={handleSubmit} formMethods={formMethods}>
+        <fieldset disabled={loading}>
+          <div className="mb-10 ml-5 flex items-center gap-5 bg-spanishGreen p-4 dark:bg-blackPearl">
+            <div className="field mb-0 flex-1">
               <Label name="name">Name</Label>
               <TextField name="name" className="input" placeholder="" />
             </div>
-            <div className="field flex-1">
+            <div className="field mb-0 flex-1">
               <Label name="email">Email</Label>
               <EmailField name="email" className="input" placeholder="" />
             </div>
             <RoundButton status="warning" type="submit" />
-          </fieldset>
-        </Form>
-      </div>
+          </div>
+        </fieldset>
+      </Form>
 
       <ListInvitesCell eventId={eventId} />
     </div>
