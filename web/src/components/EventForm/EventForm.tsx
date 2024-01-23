@@ -1,27 +1,42 @@
 import { Form, TextField, Label, DateField } from '@redwoodjs/forms'
 
 import Checkbox from 'src/components/Checkbox/Checkbox'
+import { formatDateFromDBForInput } from 'src/helpers/dateHelpers'
 
-const EventForm = ({ handleSubmit, loading }) => {
+const EventForm = ({
+  handleSubmit,
+  loading,
+  defaultValues = {},
+  buttonLabel = 'Submit',
+}) => {
   return (
     <Form onSubmit={handleSubmit}>
       <fieldset disabled={loading}>
         <div className="field">
           <Label name="eventName">Event Name</Label>
-          <TextField name="eventName" placeholder="" />
+          <TextField
+            name="eventName"
+            placeholder=""
+            defaultValue={defaultValues.eventName}
+          />
         </div>
         <div className="field">
           <Label name="groupName">Event Date</Label>
-          <DateField name="eventDate" placeholder="" />
+          <DateField
+            name="eventDate"
+            placeholder=""
+            defaultValue={formatDateFromDBForInput(defaultValues.eventDate)}
+          />
         </div>
         <div className="field">
           <Checkbox
             name="eventReminder"
             label="Send out a reminder for an event"
+            defaultChecked={defaultValues.eventReminder}
           />
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit">{buttonLabel}</button>
       </fieldset>
     </Form>
   )
