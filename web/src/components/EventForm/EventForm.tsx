@@ -3,12 +3,23 @@ import { Form, TextField, Label, DateField } from '@redwoodjs/forms'
 import Checkbox from 'src/components/Checkbox/Checkbox'
 import { formatDateFromDBForInput } from 'src/helpers/dateHelpers'
 
+interface EventFormProps {
+  handleSubmit: ({ data }) => void
+  loading: boolean
+  buttonLabel: string
+  defaultValues?: {
+    eventName?: string
+    eventDate?: Date
+    eventReminder?: boolean
+  }
+}
+
 const EventForm = ({
   handleSubmit,
   loading,
   defaultValues = {},
   buttonLabel = 'Submit',
-}) => {
+}: EventFormProps) => {
   return (
     <Form onSubmit={handleSubmit}>
       <fieldset disabled={loading}>

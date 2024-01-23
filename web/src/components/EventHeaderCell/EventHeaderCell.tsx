@@ -31,6 +31,7 @@ export const Failure = ({
 
 export const Success = ({
   event,
+  showEditForm,
 }: CellSuccessProps<FindEventHeaderQuery, FindEventHeaderQueryVariables>) => {
   return (
     <>
@@ -41,7 +42,7 @@ export const Success = ({
         <h1 className="m-0 flex-1 p-0 font-condensed text-[166px] uppercase leading-[0.8] text-white">
           {event.name}
         </h1>
-        <button className="text-white dark:text-white">
+        <button className="text-white dark:text-white" onClick={showEditForm}>
           <Icon id="edit" />
         </button>
         <Button size="small" className="bg-supernova text-black">
