@@ -48,7 +48,9 @@ export const Failure = ({
 export const Success = ({
   event,
   handleClose,
-}: CellSuccessProps<FindEditEventQuery, FindEditEventQueryVariables>) => {
+}: CellSuccessProps<FindEditEventQuery, FindEditEventQueryVariables> & {
+  handleClose: () => void
+}) => {
   const [updateEvent, { loading }] = useMutation(UPDATE_EVENT_MUTATION, {
     onCompleted: () => {
       handleClose()
