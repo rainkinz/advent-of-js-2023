@@ -2499,17 +2499,18 @@ __metadata:
   linkType: hard
 
 "@fastify/reply-from@npm:^9.0.0":
-  version: 9.4.0
-  resolution: "@fastify/reply-from@npm:9.4.0"
+  version: 9.7.0
+  resolution: "@fastify/reply-from@npm:9.7.0"
   dependencies:
     "@fastify/error": ^3.0.0
     end-of-stream: ^1.4.4
+    fast-content-type-parse: ^1.1.0
     fast-querystring: ^1.0.0
     fastify-plugin: ^4.0.0
     pump: ^3.0.0
     tiny-lru: ^11.0.0
     undici: ^5.19.1
-  checksum: 2090866e5d381685cf553918921fb27cd229aa3aa9d03353f91facf2f0637ee66a56391704a0bcb88344d7f10ff0360c4159e7f31eca5fa181271474da8a0d31
+  checksum: 40a6838fd3b762dcc954bf652e79175117648b4f68667d32f4ef64deeac8d9be9abcaf0b382b5e8d4edd46f6540501664bd6024ac3c0f335b3ffedfcbf20cf48
   languageName: node
   linkType: hard
 
